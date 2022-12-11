@@ -5,17 +5,13 @@
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 border-bottom">
 
-    <h2>CCL Cedears</h2>
+    <h2>Variables BCRA</h2>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
             <tr>
-                <th>Ticker ARG</td>
-                <th>Last Cedear</td>
-                <th>FC</td>
-                <th>Ticker US</td>
-                <th>Last US</td>
-                <th>CCL</td>
-                    
+                <th>Nombre</td>
+                <th>Fecha</td>
+                <th>Valor</td>                    
             </tr>
 
             <tbody id="vehicleList">
@@ -35,23 +31,18 @@
     $(document).ready(function() {
         // Fetch the initial table
         refreshTable();
-
-        // Fetch every 5 seconds
-        setInterval(refreshTable, 15000);
+        
     });
 
     function refreshTable(){
-        $.getJSON('{{ env('DEFIANT_ORDER_API') }}'+"/api/arg/ccl", function(data) {
+        $.getJSON('{{ env('PARACHUTE_ENDING_API') }}'+"/api/arg//bcra", function(data) {
             var vehicleListData = '';
             $.each(data, function(key, value) {
                 vehicleListData += '<tr id="rowVehicleStatus" class="">';
-                vehicleListData += '<td>'+value.Ticker+'</td>';
-                vehicleListData += '<td>'+value.Cedear+'</td>';
-                vehicleListData += '<td>'+value.FC+'</td>';
-                vehicleListData += '<td>'+value.TickerUS+'</td>';
-
-                vehicleListData += '<td>'+value.Stock+'</td>';
-                vehicleListData += '<td>'+value.CCL+'</td>';
+                vehicleListData += '<td>'+value.Nombre+'</td>';
+                vehicleListData += '<td>'+value.Fecha+'</td>';
+                //vehicleListData += '<td>'+value.objectgroupname+'</td>';
+                vehicleListData += '<td>'+value.Valor+'</td>';
                 vehicleListData += '</tr>';     
             });
 
@@ -64,4 +55,3 @@
 <script src="js/script.js"></script>
 
 @include('footer')
-        

@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('home');
 
+/* Example  views
 Route::view('dashboard2', 'dashboard')->name('dashboard2');
 Route::view('table1', 'tableDash')->name('tableDash');
+*/
 
 Route::view('bcra', 'otherTabs.bcra')->name('bcra');
 

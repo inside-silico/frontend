@@ -5,7 +5,7 @@
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 border-bottom">
 
-    <h2>Dolar MEP 48hs</h2>
+    <h2>Lanzamiento Cubierto GGAL</h2>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
             <tr>
@@ -44,7 +44,7 @@
     });
 
     function refreshTable(){
-        $.getJSON('{{ env('DEFIANT_ORDER_API') }}'+"/api/arg/options/lanzamiento/GGAL", function(data) {
+        $.getJSON('{{ env('PARACHUTE_ENDING_API') }}'+"/api/arg/options/lanzamiento/GGAL", function(data) {
             var vehicleListData = '';
             $.each(data, function(key, value) {
                 vehicleListData += '<tr id="rowVehicleStatus" class="">';

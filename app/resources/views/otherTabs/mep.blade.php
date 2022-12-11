@@ -5,13 +5,22 @@
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 border-bottom">
 
-    <h2>Section title</h2>
+    <h2>Dolar MEP 48hs</h2>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
             <tr>
-                <th>Nombre</td>
-                <th>Fecha</td>
-                <th>Valor</td>                    
+                <th>Ticker Pesos</td>
+                <th>Bid Pesos</td>
+                <th>Ask Pesos</td>
+                <th>Last Pesos</td>
+                <th>Ticker Dolar</td>
+                <th>Bid Dolar</td>
+                <th>Ask Dolar</td>
+                <th>Last Dolar</td>
+                <th>MEP Bid</td>
+                <th>MEP Ask</td>
+                <th>MEP Last</td>
+                    
             </tr>
 
             <tbody id="vehicleList">
@@ -31,18 +40,29 @@
     $(document).ready(function() {
         // Fetch the initial table
         refreshTable();
-        
+
+        // Fetch every 5 seconds
+        setInterval(refreshTable, 15000);
     });
 
     function refreshTable(){
-        $.getJSON("http://10.0.0.62:5000/api/arg//bcra", function(data) {
+        $.getJSON('{{ env('PARACHUTE_ENDING_API') }}'+"/api/arg/mep", function(data) {
             var vehicleListData = '';
             $.each(data, function(key, value) {
                 vehicleListData += '<tr id="rowVehicleStatus" class="">';
-                vehicleListData += '<td>'+value.Nombre+'</td>';
-                vehicleListData += '<td>'+value.Fecha+'</td>';
-                //vehicleListData += '<td>'+value.objectgroupname+'</td>';
-                vehicleListData += '<td>'+value.Valor+'</td>';
+                vehicleListData += '<td>'+value.symbolARS+'</td>';
+                vehicleListData += '<td>'+value.bidARS+'</td>';
+                vehicleListData += '<td>'+value.askARS+'</td>';
+                vehicleListData += '<td>'+value.lastARS+'</td>';
+
+                vehicleListData += '<td>'+value.symbolUSD+'</td>';
+                vehicleListData += '<td>'+value.bidUSD+'</td>';
+                vehicleListData += '<td>'+value.askUSD+'</td>';
+                vehicleListData += '<td>'+value.lastUSD+'</td>';
+
+                vehicleListData += '<td>'+value.MEPbid+'</td>';
+                vehicleListData += '<td>'+value.MEPask+'</td>';
+                vehicleListData += '<td>'+value.MEPlast+'</td>';
                 vehicleListData += '</tr>';     
             });
 
@@ -55,3 +75,4 @@
 <script src="js/script.js"></script>
 
 @include('footer')
+        

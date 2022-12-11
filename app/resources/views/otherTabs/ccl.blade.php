@@ -5,20 +5,17 @@
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 border-bottom">
 
-    <h2>Dolar MEP 48hs</h2>
+    <h2>CCL Cedears</h2>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
             <tr>
-                <th>Ticker</td>
-                <th>Base</td>
-                <th>Bid</td>
-                <th>Ask</td>
-                <th>Clas</td>
-                <th>Precio de Equilibrio</td>
-                <th>Ganancia Potencial</td>
-                <th>Ganancia Potencial en %</td>
-                <th>Ganancia Potencial en % Anualizada</td>
-                <th>Dias Restantes</td>                    
+                <th>Ticker ARG</td>
+                <th>Last Cedear</td>
+                <th>FC</td>
+                <th>Ticker US</td>
+                <th>Last US</td>
+                <th>CCL</td>
+                    
             </tr>
 
             <tbody id="vehicleList">
@@ -44,20 +41,17 @@
     });
 
     function refreshTable(){
-        $.getJSON('{{ env('DEFIANT_ORDER_API') }}'+"/api/arg/options/lanzamiento/COME", function(data) {
+        $.getJSON('{{ env('PARACHUTE_ENDING_API') }}'+"/api/arg/ccl", function(data) {
             var vehicleListData = '';
             $.each(data, function(key, value) {
                 vehicleListData += '<tr id="rowVehicleStatus" class="">';
-                vehicleListData += '<td>'+value.symbol+'</td>';
-                vehicleListData += '<td>'+value.bid+'</td>';
-                vehicleListData += '<td>'+value.ask+'</td>';
-                vehicleListData += '<td>'+value.strike+'</td>';
-                vehicleListData += '<td>'+value.Clas+'</td>';
-                vehicleListData += '<td>'+value.eq+'</td>';
-                vehicleListData += '<td>'+value.gain+'</td>';
-                vehicleListData += '<td>'+value.gain2+'</td>';
-                vehicleListData += '<td>'+value.gain3+'</td>';
-                vehicleListData += '<td>'+value.days_left+'</td>';
+                vehicleListData += '<td>'+value.Ticker+'</td>';
+                vehicleListData += '<td>'+value.Cedear+'</td>';
+                vehicleListData += '<td>'+value.FC+'</td>';
+                vehicleListData += '<td>'+value.TickerUS+'</td>';
+
+                vehicleListData += '<td>'+value.Stock+'</td>';
+                vehicleListData += '<td>'+value.CCL+'</td>';
                 vehicleListData += '</tr>';     
             });
 

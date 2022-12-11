@@ -5,22 +5,20 @@
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 border-bottom">
 
-    <h2>Dolar MEP 48hs</h2>
+    <h2>Lanzamiento Cubierto YPFD</h2>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
             <tr>
-                <th>Ticker Pesos</td>
-                <th>Bid Pesos</td>
-                <th>Ask Pesos</td>
-                <th>Last Pesos</td>
-                <th>Ticker Dolar</td>
-                <th>Bid Dolar</td>
-                <th>Ask Dolar</td>
-                <th>Last Dolar</td>
-                <th>MEP Bid</td>
-                <th>MEP Ask</td>
-                <th>MEP Last</td>
-                    
+                <th>Ticker</td>
+                <th>Base</td>
+                <th>Bid</td>
+                <th>Ask</td>
+                <th>Clas</td>
+                <th>Precio de Equilibrio</td>
+                <th>Ganancia Potencial</td>
+                <th>Ganancia Potencial en %</td>
+                <th>Ganancia Potencial en % Anualizada</td>
+                <th>Dias Restantes</td>                    
             </tr>
 
             <tbody id="vehicleList">
@@ -46,23 +44,20 @@
     });
 
     function refreshTable(){
-        $.getJSON('{{ env('DEFIANT_ORDER_API') }}'+"/api/arg/mep", function(data) {
+        $.getJSON('{{ env('PARACHUTE_ENDING_API') }}'+"/api/arg/options/lanzamiento/YPFD", function(data) {
             var vehicleListData = '';
             $.each(data, function(key, value) {
                 vehicleListData += '<tr id="rowVehicleStatus" class="">';
-                vehicleListData += '<td>'+value.symbolARS+'</td>';
-                vehicleListData += '<td>'+value.bidARS+'</td>';
-                vehicleListData += '<td>'+value.askARS+'</td>';
-                vehicleListData += '<td>'+value.lastARS+'</td>';
-
-                vehicleListData += '<td>'+value.symbolUSD+'</td>';
-                vehicleListData += '<td>'+value.bidUSD+'</td>';
-                vehicleListData += '<td>'+value.askUSD+'</td>';
-                vehicleListData += '<td>'+value.lastUSD+'</td>';
-
-                vehicleListData += '<td>'+value.MEPbid+'</td>';
-                vehicleListData += '<td>'+value.MEPask+'</td>';
-                vehicleListData += '<td>'+value.MEPlast+'</td>';
+                vehicleListData += '<td>'+value.symbol+'</td>';
+                vehicleListData += '<td>'+value.bid+'</td>';
+                vehicleListData += '<td>'+value.ask+'</td>';
+                vehicleListData += '<td>'+value.strike+'</td>';
+                vehicleListData += '<td>'+value.Clas+'</td>';
+                vehicleListData += '<td>'+value.eq+'</td>';
+                vehicleListData += '<td>'+value.gain+'</td>';
+                vehicleListData += '<td>'+value.gain2+'</td>';
+                vehicleListData += '<td>'+value.gain3+'</td>';
+                vehicleListData += '<td>'+value.days_left+'</td>';
                 vehicleListData += '</tr>';     
             });
 
